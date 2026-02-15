@@ -1,13 +1,13 @@
 -- DDL for database
-create database if not exists ${DB_NAME};
+create database if not exists db01;
 
-drop user if exists ${DB_USER};
+drop user if exists db01_user;
 
-CREATE USER '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';
+CREATE USER 'db01_user'@'%' IDENTIFIED BY 'irP267H1'; -- todo this is should be replaced by env var
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON ${DB_NAME}.* TO '${DB_USER}'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON db01.* TO 'db01_user'@'%';
 
-use ${DB_NAME};
+use db01;
 
 create table if not exists users (
                                      id INT not null AUTO_INCREMENT PRIMARY KEY COMMENT 'Unique row ID',
