@@ -1,11 +1,43 @@
 <?php
 
-namespace App\Configs;
+namespace config\db;
 
-final class DbConfig
-{
-    public static $server = 'localhost:3306';
-    public static $user = 'db01_user';
-    public static $pass = 'irP267H1';
-    public static $db = 'db01';
+class DbConfig {
+    private $server;
+    private $user;
+    private $pass;
+    private $db;
+
+    public function __construct()
+    {
+        $server = getenv(EnvVars::host);
+        if ($server) {
+
+        } else {
+            printEvError(EnvVars::host);
+        }
+        $db = getenv(EnvVars::db);
+        if ($db) {
+
+        } else {
+            printEvError(EnvVars::db);
+        }
+        $user = getenv(EnvVars::user);
+        if ($user) {
+
+        } else {
+            printEvError(EnvVars::user);
+        }
+        $pass = getenv(EnvVars::pass);
+        if ($pass) {
+
+        } else {
+            printEvError(EnvVars::pass);
+        }
+    }
+
+    private function printEvError($var) {
+        echo $var.' environment variable not set or not accessible via getenv().\n';
+    }
+
 }
