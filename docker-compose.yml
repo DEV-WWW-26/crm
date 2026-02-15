@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  web:
+    image: php:8.3-apache # Uses an official PHP image with Apache built-in
+    container_name: apache-php
+    ports:
+      - "80:80" # Maps host port 80 to container port 80
+    volumes:
+      - ./public:/var/www/html # Mounts your local 'public' directory to the web root
+      - ./config/php.ini-development:/usr/local/etc/php/php.ini-development
+      - ./config/php.ini-production:/usr/local/etc/php/php.ini-production
+    restart: always
+
+  db:
+    image: mariadb:10.6 # Using MariaDB as a popular alternative to MySQL
+    container_name: mariadb-server
+    environment:
+      MYSQL_ROOT_PASSWORD: 68w5Tdhb # !! Change this password !!
+      MYSQL_DATABASE: db01
+      MYSQL_USER: db01_user
+      MYSQL_PASSWORD: irP267H1 # !! Change this password !!
+    ports:
+      - "3306:3306" # Maps host port 3306 to container port 3306
+    volumes:
+      - ./db/init-scripts:/docker-entrypoint-initdb.d #startup sql script
+      - db_data:/var/lib/mysql # Persists database data in a named volume
+    restart: always
+
+volumes:
+  db_data: # Declares the named volume for database persistence
