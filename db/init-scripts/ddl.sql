@@ -1,13 +1,13 @@
 -- DDL for database
-create database if not exists db01;
+create database if not exists ${DB_NAME};
 
-drop user if exists db01_user;
+drop user if exists ${DB_USER};
 
-CREATE USER 'db01_user'@'%' IDENTIFIED BY 'irP267H1';
+CREATE USER '${DB_USER}'@'%' IDENTIFIED BY ${DB_PASS} ;
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON db01.* TO 'db01_user'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ${DB_NAME}.* TO '${DB_USER}'@'%';
 
-use db01;
+use ${DB_NAME};
 
 create table if not exists users (
                                      id INT not null AUTO_INCREMENT PRIMARY KEY COMMENT 'Unique row ID',

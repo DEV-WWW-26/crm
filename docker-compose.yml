@@ -14,10 +14,10 @@ services:
     image: mariadb:10.6 # Using MariaDB as a popular alternative to MySQL
     container_name: mariadb-server
     environment:
-      MYSQL_ROOT_PASSWORD: 68w5Tdhb # !! Change this password !!
-      MYSQL_DATABASE: db01
-      MYSQL_USER: db01_user
-      MYSQL_PASSWORD: irP267H1 # !! Change this password !!
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
     ports:
       - "3306:3306" # Maps host port 3306 to container port 3306
     volumes:
