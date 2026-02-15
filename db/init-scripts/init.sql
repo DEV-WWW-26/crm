@@ -3,7 +3,7 @@ create database if not exists db01;
 
 drop user if exists db01_user;
 
-CREATE USER 'db01_user'@'%' IDENTIFIED BY 'irP267H1'; -- todo this is should be replaced by env var
+CREATE USER 'db01_user'@'%' IDENTIFIED BY 'irP267H1'; -- todo this is should be replaced by env var, need more time
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON db01.* TO 'db01_user'@'%';
 

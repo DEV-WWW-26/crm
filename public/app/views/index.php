@@ -1,7 +1,8 @@
 <?php
-include 'app/views/header.html';
 
-use auth\AuthService;
+use app\services\AuthService;
+
+include 'app/views/header.html';
 
 session_start();
 
