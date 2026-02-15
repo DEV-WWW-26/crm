@@ -3,7 +3,7 @@ create database if not exists ${DB_NAME};
 
 drop user if exists ${DB_USER};
 
-CREATE USER '${DB_USER}'@'%' IDENTIFIED BY ${DB_PASS} ;
+CREATE USER '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON ${DB_NAME}.* TO '${DB_USER}'@'%';
 

@@ -23,6 +23,7 @@ services:
     volumes:
       - ./db/init-scripts:/docker-entrypoint-initdb.d #startup sql script
       - db_data:/var/lib/mysql # Persists database data in a named volume
+    command: chmod +x /docker-entrypoint-initdb.d/init.sh
     restart: always
 
 volumes:
