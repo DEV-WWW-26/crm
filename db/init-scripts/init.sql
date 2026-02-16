@@ -21,7 +21,7 @@ create table if not exists cities(
     id INT not null AUTO_INCREMENT PRIMARY KEY COMMENT 'Unique row ID',
     city VARCHAR(255) NOT NULL COMMENT 'City',
     created TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP COMMENT 'When row is added',
-    Unique INDEX idx_name(lower(city))
+    Unique INDEX idx_name(city)
 );
 
 create table if not exists address (
