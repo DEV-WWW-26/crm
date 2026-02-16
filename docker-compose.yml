@@ -6,11 +6,13 @@ services:
       - "80:80" # Maps host port 80 to container port 80
     volumes:
       - ./public:/var/www/html # Mounts your local 'public' directory to the web root
-    restart: always
+    restart: no
 
   db:
     image: mariadb:10.6 # Using MariaDB as a popular alternative to MySQL
     container_name: mariadb-server
+    env_file:
+      - .env
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
       MYSQL_DATABASE: ${DB_NAME}
