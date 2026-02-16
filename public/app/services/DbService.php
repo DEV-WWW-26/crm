@@ -1,7 +1,8 @@
 <?php
+
 namespace App\Service;
 
-include_once $_SERVER['DOCUMENT_ROOT']."/app/config/db/DbConfig.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/app/config/db/DbConfig.php";
 
 use App\Config\DbConfig;
 use mysqli;
@@ -21,10 +22,15 @@ class DbService
     public function connect()
     {
         try {
-            $this->connection = new mysqli($this->config->getServer(), $this->config->getUser(), $this->config->getPass(),
-                $this->config->getDb());
+            // $user = $this->config->getUser();
+            $user = $this->config->getUser() . '@%';
+            echo '<p>User: ' . $user . '</p>';
+            echo '<p>Server: ' . $this->config->getServer() . '</p>';
+            echo '<p>Db: ' . $this->config->getDb() . '</p>';
+            echo '<p>pass: ' . $this->config->getPass() . '</p>';
+            $this->connection = new mysqli($this->config->getServer(), $this->config->getUser(), $this->config->getPass(), $this->config->getDb());
         } catch (\Exception $e) {
-            exit("An error occurred on creating DB connection: ".$e->getMessage());
+            exit("An error occurred on creating DB connection: " . $e->getMessage());
         }
     }
 

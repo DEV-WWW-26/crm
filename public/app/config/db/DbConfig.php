@@ -15,21 +15,25 @@ class DbConfig
 
     public function __construct()
     {
-        $this->server = "web";
-        $db = getenv(env::db->value);
-        if ($db) {
+        $this->server = "db";
+
+        $this->db = getenv(env::db->value);
+
+        if ($this->db) {
 
         } else {
             $this->printEvError(env::db->value);
         }
-        $user = getenv(env::user->value);
-        if ($user) {
+
+        $this->user = getenv(env::user->value);
+        if ($this->user) {
 
         } else {
             $this->printEvError(env::user->value);
         }
-        $pass = getenv(env::pass->value);
-        if ($pass) {
+
+        $this->pass = getenv(env::pass->value);
+        if ($this->pass) {
 
         } else {
             $this->printEvError(env::pass->value);
