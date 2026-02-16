@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   web:
     image: php:8.3-apache # Uses an official PHP image with Apache built-in

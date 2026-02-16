@@ -1,7 +1,9 @@
 <?php
-namespace app\services;
+namespace App\Service;
 
-use App\Models\User;
+include_once __DIR__."/DbService.php";
+
+use App\Model\User;
 
 class AuthService {
 

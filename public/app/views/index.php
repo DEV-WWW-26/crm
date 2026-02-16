@@ -1,10 +1,16 @@
 <?php
+include_once $_SERVER['DOCUMENT_ROOT']."/app/services/AuthService.php";
 
-use app\services\AuthService;
+use App\Service\AuthService;
 
 include 'app/views/header.html';
 
-session_start();
+if (session_status() === PHP_SESSION_ACTIVE) {
+    // Session is active
+} else {
+    session_start();
+}
+
 
 $authService = new AuthService();
 if (!$authService->isAnyLogged()) {

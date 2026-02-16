@@ -1,7 +1,7 @@
 <?php
-namespace app\services;
+namespace App\Service;
 
-use config\db\DbConfig;
+use App\Config\DbConfig;
 use PDO;
 use PDOException;
 

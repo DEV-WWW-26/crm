@@ -1,6 +1,6 @@
 <?php
 
-namespace config\db;
+namespace App\Config;
 
 class DbConfig {
     private $server;
