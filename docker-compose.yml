@@ -11,8 +11,6 @@ services:
   db:
     image: mariadb:10.6 # Using MariaDB as a popular alternative to MySQL
     container_name: mariadb-server
-    env_file:
-      - .env
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
       MYSQL_DATABASE: ${DB_NAME}
