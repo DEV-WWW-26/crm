@@ -32,12 +32,8 @@ class AuthService
     public function registerUser(User $user): void
     {
         try {
-            $stmt = $this->db->getConnection()->prepare("insert into users (first_name, last_name, email, password) 
-                values (:first_name, :last_name, :email, :password), ?, ?, ?)");
-            $stmt->bind_param(":first_name", $user->getFirstName());
-            $stmt->bind_param(":last_name", $user->getLastName());
-            $stmt->bind_param(":email", $user->getEmail());
-            $stmt->bind_param(":password", $user->getPassword());
+            $stmt = $this->db->getConnection()->prepare("insert into users (first_name, last_name, email, password) values (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $user->getFirstName(), $user->getLastName(), $user->getEmail(), $user->getPassword());
             $stmt->execute();
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage());
