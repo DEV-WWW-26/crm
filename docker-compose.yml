@@ -6,6 +6,10 @@ services:
       - "80:80" # Maps host port 80 to container port 80
     volumes:
       - ./public:/var/www/html # Mounts your local 'public' directory to the web root
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
     restart: no
 
   db:
