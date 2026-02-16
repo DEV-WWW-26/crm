@@ -12,7 +12,7 @@ if (session_status() === PHP_SESSION_ACTIVE) {
 }
 
 $authService = new AuthService();
-if (!$authService->isAnyLogged()) {
+if (!$authService->isLogged()) {
     include('app/views/welcome.php');
 } else {
     include('app/views/navigation.html');

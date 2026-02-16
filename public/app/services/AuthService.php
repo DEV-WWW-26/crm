@@ -21,16 +21,6 @@ class AuthService
         $this->db = new DbService();
     }
 
-    public function isAnyLogged(): bool
-    {
-        if (!isset($_SERVER['PHP_AUTH_USER'])) {
-
-            return false;
-        }
-
-        return true;
-    }
-
     public function registerUser(User $user): void
     {
         try {
@@ -50,7 +40,7 @@ class AuthService
                 $stmt->store_result();
                 $num_rows = $stmt->num_rows; // or mysqli_stmt_num_rows($stmt)
                 if ($num_rows > 0) {
-                    $_SERVER['PHP_AUTH_USER'] = $user->getEmail();
+                    $this->setLogged();
                     Alert::ok("Login successful!");
                 } else {
                     Alert::err("Login failed");
@@ -61,6 +51,24 @@ class AuthService
         } catch (\Exception $e) {
             Alert::err($e->getMessage());
         }
+    }
+
+    private function setLogged():void {
+        setcookie('logged', 'ok', time() + (86400 * 1), "/"); // 1 day
+    }
+
+    public function isLogged():bool {
+        if (isset($_COOKIE["logged"])) {
+            if ($_COOKIE["logged"] == "ok") {
+
+              return true;
+            }
+        } else {
+
+            return false;
+        }
+
+        return false;
     }
 }
 
