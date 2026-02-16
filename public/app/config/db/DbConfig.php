@@ -15,12 +15,6 @@ class DbConfig
 
     public function __construct()
     {
-        $server = getenv(env::host->value);
-        if ($server) {
-
-        } else {
-            $this->printEvError(env::host->value);
-        }
         $db = getenv(env::db->value);
         if ($db) {
 

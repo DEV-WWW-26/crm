@@ -4,8 +4,7 @@ namespace config\db;
 
 enum EnvironmentVarsEnum: string
 {
-    case host = 'DB_HOST';
-    case db = 'DB_NAME';
-    case user = 'DB_USER';
-    case pass = 'DB_PASS';
+    case db = 'MYSQL_DATABASE';
+    case user = 'MYSQL_USER';
+    case pass = 'MYSQL_PASSWORD';
 }

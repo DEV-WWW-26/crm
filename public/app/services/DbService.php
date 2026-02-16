@@ -22,7 +22,7 @@ class DbService
     public function connect()
     {
         try {
-            $this->connection = new PDO('mysql:host=' . $this->config->getServer() . ';dbname=' . $this->config->getDb(),
+            $this->connection = new PDO('mysql:host=localhost;dbname=' . $this->config->getDb(),
                 $this->config->getUser(), $this->config->getPass());
         } catch (PDOException $e) {
             // attempt to retry the connection after some timeout for example
