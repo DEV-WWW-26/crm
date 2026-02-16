@@ -76,7 +76,7 @@ class AuthService
     }
 
     public function logoutUser():void {
-        unset($_COOKIE["logged"]);
+        setcookie('logged', 'no', 1, "/");
         Alert::ok('Logged out successfully');
     }
 }
