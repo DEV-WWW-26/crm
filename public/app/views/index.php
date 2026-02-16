@@ -11,7 +11,6 @@ if (session_status() === PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-
 $authService = new AuthService();
 if (!$authService->isAnyLogged()) {
     include('app/views/welcome.php');
