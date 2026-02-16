@@ -2,7 +2,7 @@
 
 namespace config\db;
 
-enum EnvVars: string
+enum EnvironmentVarsEnum: string
 {
     case host = 'DB_HOST';
     case db = 'DB_NAME';

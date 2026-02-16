@@ -2,7 +2,12 @@
 
 namespace App\Config;
 
-class DbConfig {
+use config\db\EnvironmentVarsEnum as env;
+
+include_once __DIR__ . "/EnvironmentEnum.php";
+
+class DbConfig
+{
     private $server;
     private $user;
     private $pass;
@@ -10,34 +15,66 @@ class DbConfig {
 
     public function __construct()
     {
-        $server = getenv(EnvVars::host);
+        $server = getenv(env::host->value);
         if ($server) {
 
         } else {
-            printEvError(EnvVars::host);
+            $this->printEvError(env::host->value);
         }
-        $db = getenv(EnvVars::db);
+        $db = getenv(env::db->value);
         if ($db) {
 
         } else {
-            printEvError(EnvVars::db);
+            $this->printEvError(env::db->value);
         }
-        $user = getenv(EnvVars::user);
+        $user = getenv(env::user->value);
         if ($user) {
 
         } else {
-            printEvError(EnvVars::user);
+            $this->printEvError(env::user->value);
         }
-        $pass = getenv(EnvVars::pass);
+        $pass = getenv(env::pass->value);
         if ($pass) {
 
         } else {
-            printEvError(EnvVars::pass);
+            $this->printEvError(env::pass->value);
         }
     }
 
-    private function printEvError($var) {
-        echo $var.' environment variable not set or not accessible via getenv().\n';
+    private function printEvError($var)
+    {
+        echo $var . ' environment variable not set or not accessible via getenv().\n';
     }
 
+    /**
+     * @return mixed
+     */
+    public function getServer()
+    {
+        return $this->server;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPass()
+    {
+        return $this->pass;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDb()
+    {
+        return $this->db;
+    }
 }
