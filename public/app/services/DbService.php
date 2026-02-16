@@ -23,10 +23,8 @@ class DbService
         try {
             /*$this->connection = new PDO('mysql:host=localhost;dbname=' . $this->config->getDb(),
                 $this->config->getUser(), $this->config->getPass());*/
-            phpinfo();
-            $this->connection = new mysqli("localhost", $this->config->getUser(), $this->config->getPass(), $this->config->getDb());
+            $this->connection = new mysqli($this->config->getServer(), $this->config->getUser(), $this->config->getPass(), $this->config->getDb());
         } catch (\Exception $e) {
-            phpinfo();
             exit("An error occurred on creating DB connection: ".$e->getMessage());
         }
     }

@@ -15,6 +15,7 @@ class DbConfig
 
     public function __construct()
     {
+        $this->server = "web";
         $db = getenv(env::db->value);
         if ($db) {
 

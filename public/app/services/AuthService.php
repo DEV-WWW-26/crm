@@ -19,7 +19,7 @@ class AuthService
         $this->db = new DbService();
     }
 
-    public function isAnyLogged()
+    public function isAnyLogged(): bool
     {
         if (!isset($_SERVER['PHP_AUTH_USER'])) {
 
@@ -29,7 +29,7 @@ class AuthService
         return true;
     }
 
-    public function registerUser(User $user)
+    public function registerUser(User $user): void
     {
         try {
             $stmt = $this->db->getConnection()->prepare("insert into users (first_name, last_name, email, password) 
