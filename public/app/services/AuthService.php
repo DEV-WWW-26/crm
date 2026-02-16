@@ -27,6 +27,7 @@ class AuthService
             $stmt = $this->db->getConnection()->prepare("insert into users (first_name, last_name, email, password) values (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $user->getFirstName(), $user->getLastName(), $user->getEmail(), $user->getPassword());
             $stmt->execute();
+            Alert::ok('Registered successfully');
         } catch (\Exception $e) {
             Alert::err($e->getMessage());
         }
@@ -38,7 +39,8 @@ class AuthService
             $stmt->bind_param("ss", $user->getEmail(), $user->getPassword());
             if ($stmt->execute()) {
                 $stmt->store_result();
-                $num_rows = $stmt->num_rows; // or mysqli_stmt_num_rows($stmt)
+                $num_rows = $stmt->num_rows;
+                // $num_rows = mysqli_stmt_num_rows($stmt);
                 if ($num_rows > 0) {
                     $this->setLogged();
                     Alert::ok("Login successful!");
