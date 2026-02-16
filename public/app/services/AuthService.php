@@ -74,6 +74,10 @@ class AuthService
 
         return false;
     }
-}
 
+    public function logoutUser():void {
+        unset($_COOKIE["logged"]);
+        Alert::ok('Logged out successfully');
+    }
+}
 ?>

@@ -1,19 +1,19 @@
 <form id=regform" action="post_registration.php" method="post">
   <div class="mb-3">
     <label class="form-label">Имя</label>
-    <input type="text" class="form-control" name="firstname">
+    <input type="text" class="form-control" name="firstname" required>
   </div>
   <div class="mb-3">
     <label class="form-label">Фамилия</label>
-    <input type="text" class="form-control" name="lastname">
+    <input type="text" class="form-control" name="lastname" required>
   </div>
   <div class="mb-3">
     <label class="form-label">Email address</label>
-    <input type="text" class="form-control" name="email" placeholder="name@example.com">
+    <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
   </div>
   <div class="mb-3">
     <label class="form-label">Password</label>
-    <input type="text" class="form-control" name="password">
+    <input type="text" class="form-control" name="password" required>
   </div>
 
   <button type="submit" class="btn btn-primary">Регистрация</button>
