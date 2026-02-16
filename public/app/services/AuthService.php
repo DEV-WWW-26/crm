@@ -24,7 +24,9 @@ class AuthService
     public function registerUser(User $user): void
     {
         try {
-            $stmt = $this->db->getConnection()->prepare("insert into users (first_name, last_name, email, password) values (?, ?, ?, ?)");
+            // todo move queries to static strings
+            $stmt = $this->db->getConnection()->prepare("insert into users (first_name, last_name, email, password) 
+                values (?, ?, ?, md5(?))");
             $stmt->bind_param("ssss", $user->getFirstName(), $user->getLastName(), $user->getEmail(), $user->getPassword());
             $stmt->execute();
             Alert::ok('Registered successfully');
@@ -35,7 +37,7 @@ class AuthService
 
     public function loginUser(User $user): void {
         try {
-            $stmt = $this->db->getConnection()->prepare("select * from users u WHERE u.email  = ? AND u.password = ?");
+            $stmt = $this->db->getConnection()->prepare("select * from users u WHERE u.email  = ? AND u.password = md5(?)");
             $stmt->bind_param("ss", $user->getEmail(), $user->getPassword());
             if ($stmt->execute()) {
                 $stmt->store_result();
@@ -50,7 +52,7 @@ class AuthService
             } else {
                 Alert::err("Login failed");
             }
-        } catch (\Exception $e) {
+        } catch (\Exception $e) { // todo determine where catch Exception (views/locally)
             Alert::err($e->getMessage());
         }
     }

@@ -21,7 +21,7 @@ class User {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
-        $this->password = $this->encodePassword($password);
+        $this->password = $password;
     }
 
     /**
