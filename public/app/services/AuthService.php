@@ -47,8 +47,14 @@ class AuthService
             $stmt = $this->db->getConnection()->prepare("select * from users u WHERE u.email  = ? AND u.password = ?");
             $stmt->bind_param("ss", $user->getEmail(), $user->getPassword());
             if ($stmt->execute()) {
-                $_SERVER['PHP_AUTH_USER'] = $user->getEmail();
-                Alert::ok("Login successful!");
+                $stmt->store_result();
+                $num_rows = $stmt->num_rows; // or mysqli_stmt_num_rows($stmt)
+                if ($num_rows > 0) {
+                    $_SERVER['PHP_AUTH_USER'] = $user->getEmail();
+                    Alert::ok("Login successful!");
+                } else {
+                    Alert::err("Login failed");
+                }
             } else {
                 Alert::err("Login failed");
             }
