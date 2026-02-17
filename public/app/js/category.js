@@ -15,8 +15,6 @@ export async function load() {
             return Promise.reject('Network response was not ok');
         }
 
-        console.log(response.text());
-
         return Promise.resolve(response.text());
 
     } catch (error) {

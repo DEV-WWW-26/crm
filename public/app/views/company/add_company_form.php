@@ -25,6 +25,13 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 
             console.log(response); // todo fill dropdown
 
+            const items = document.getElementById('category_elements');
+            let content = '';
+            for (const key in response) {
+                content += `<a class="dropdown-item" id="${key}" href="#">${obj[key]}</a>`;
+            }
+            items.innerHTML = content;
+
         } catch (e) {
             openAlertErr(e);
         }
@@ -32,7 +39,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 
     window.register = loadCategories;
 
-    loadCategories();
+    await loadCategories();
 
 </script>
 
