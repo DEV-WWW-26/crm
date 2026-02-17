@@ -9,11 +9,12 @@ use app\models\MeetingReport;
 use app\services\MeetingService;
 use app\services\AuthService;
 
-// print_r($_POST);
+print_r($_POST);
 
-/*ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);*/
+error_reporting(E_ALL);
+
 $authService = new AuthService();
 $userId = $authService->getLoggedUserId();
 
@@ -24,7 +25,7 @@ $meeting->setStatusId($_POST["status"]);
 $meeting->setTypeId($_POST["type"]);
 $meeting->setDescription($_POST["details"]);
 $meeting->setTitle($_POST["title"]);
-$meeting->setScheduled($_POST["datetime"]);
+$meeting->setScheduled(new DateTime($_POST["datetime"]));
 
 $meetingService = new MeetingService();
 $meetingService->saveReport($meeting);

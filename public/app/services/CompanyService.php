@@ -21,7 +21,7 @@ class CompanyService
         $this->addressService = new AddressService();
     }
 
-    public function addCompany(Company $company)
+    public function addCompany(Company $company): void
     {
         try {
             $addressId = $this->addressService->registerAddress($company->getAddress());
@@ -46,7 +46,7 @@ class CompanyService
         }
     }
 
-    public function getCompanies() {
+    public function getCompanies(): ?string {
         try {
             // todo move queries to static strings
             $res = $this->dbService->getConnection()->query("select id, title from companies");

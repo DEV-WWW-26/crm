@@ -98,7 +98,7 @@ class AuthService
         try {
             $email = $this->getLoggedUserEmail();
             // todo move queries to static strings
-            $res = $this->db->getConnection()->query("select id from users where email = $email");
+            $res = $this->db->getConnection()->query("select id from users where email = '$email'");
             $id = 0;
             if ($res->num_rows > 0) {
                 while ($row = $res->fetch_assoc()) {
