@@ -126,6 +126,7 @@ call fill_meeting_types_table();
 
 create table if not exists meeting_reports (
     id INT not null AUTO_INCREMENT PRIMARY KEY COMMENT 'Unique row ID',
+    company_id int not null COMMENT 'Foreign key for company ID',
     status_id int not null COMMENT 'Foreign key for status ID',
     type_id int not null COMMENT 'Foreign key for type ID',
     user_id int not null COMMENT 'Foreign key for user ID',
@@ -133,6 +134,7 @@ create table if not exists meeting_reports (
     description VARCHAR(1000) NULL COMMENT 'Meeting description',
     scheduled TIMESTAMP null COMMENT 'Meeting scheduled date and time',
     created TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP COMMENT 'When row is added',
+    FOREIGN KEY (company_id) REFERENCES companies(id),
     FOREIGN KEY (status_id) REFERENCES meeting_status(id),
     FOREIGN KEY (type_id) REFERENCES meeting_types(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
