@@ -39,6 +39,26 @@ create table if not exists categories (
     created TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP COMMENT 'When row is added'
 );
 
+DELIMITER //
+
+drop procedure if exists fill_categories_table;
+
+CREATE PROCEDURE fill_categories_table()
+BEGIN
+	declare k int default 0;
+    SELECT COUNT(*) into k FROM INFORMATION_SCHEMA.TABLES t
+    WHERE
+        t.TABLE_SCHEMA = 'db01' AND t.TABLE_NAME = 'categories';
+    if k = 1 then
+        insert into categories (category) values ('Банк');
+        insert into categories (category) values ('Медицина');
+        insert into categories (category) values ('Текстиль');
+        end if;
+END //
+DELIMITER ;
+
+call fill_categories_table();
+
 create table if not exists companies (
     id INT not null AUTO_INCREMENT PRIMARY KEY COMMENT 'Unique row ID',
     address_id INT NOT NULL COMMENT 'Foreign key for address ID',

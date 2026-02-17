@@ -24,7 +24,7 @@ class CategoryService
     {
         try {
             // todo move queries to static strings
-            $res = $this->db->getConnection()->query("select name from categories");
+            $res = $this->db->getConnection()->query("select category from categories");
             $data = array();
             if ($res->num_rows > 0) {
                 while ($row = $res->fetch_assoc()) {
@@ -39,5 +39,7 @@ class CategoryService
         } finally {
             $this->db->closeConnection();
         }
+
+        return null;
     }
 }
