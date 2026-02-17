@@ -87,7 +87,27 @@ class MeetingService
         }
     }
 
-    public function getAllReports(): ?array {
+    public function getAllReports(): ?string {
+        try {
+            // todo move queries to static strings
+            $res = $this->dbService->getConnection()->query("select * from meeting_reports_view");
+            $data = array();
+            if ($res->num_rows > 0) {
+                while ($row = $res->fetch_assoc()) {
+                    $data[] = $row;
+                }
 
+                return json_encode($data, JSON_UNESCAPED_UNICODE);
+            }
+
+            return null;
+
+        } catch (\Exception $e) {
+            Alert::err($e->getMessage());
+        } finally {
+            $this->dbService->closeConnection();
+        }
+
+        return null;
     }
 }
