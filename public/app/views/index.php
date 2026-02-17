@@ -1,7 +1,8 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT']."/app/services/AuthService.php";
 
-use App\Service\AuthService;
+use app\services\AuthService;
+
+include_once $_SERVER['DOCUMENT_ROOT']."/app/services/AuthService.php";
 
 include 'app/views/header.html';
 

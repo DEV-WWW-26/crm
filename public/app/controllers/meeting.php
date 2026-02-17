@@ -24,6 +24,7 @@ $meeting->setStatusId($_POST["status"]);
 $meeting->setTypeId($_POST["type"]);
 $meeting->setDescription($_POST["details"]);
 $meeting->setTitle($_POST["title"]);
+$meeting->setScheduled($_POST["datetime"]);
 
 $meetingService = new MeetingService();
 $meetingService->saveReport($meeting);
