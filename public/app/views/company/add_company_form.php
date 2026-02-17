@@ -19,20 +19,21 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 
     async function loadCategories() {
         try {
-            /*const user = new User(document.getElementById('firstname').value, document.getElementById('lastname').value,
-                document.getElementById('email').value, document.getElementById('firstname').password);*/
             let response = await load();
             let categories = JSON.parse(response);
-
-            console.log(categories); // todo fill dropdown
-
-            const element = document.getElementById('category_elements');
-            let content = '';
+            const element = document.getElementById('categories_dropdown');
+            /*let content = '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"' +
+                'data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
+                    'Категория'
+                + '</button>'
+                + '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="category_elements">';*/
+            let content = '<label for="categories">Выберите категорию:</label><select name="categories" id="categories">';
             for (const key in categories) {
-                content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
+                // content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
+                content += `<option value="${key}">${categories[key].category}</option>`;
             }
+            content += '</select>'
 
-            console.log(content);
             element.innerHTML = content;
 
         } catch (e) {
