@@ -1,27 +1,31 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/app/services/CompanyService.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/app/models/Company.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/app/models/Address.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/app/models/City.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/app/services/MeetingService.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/app/services/AuthService.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/app/models/MeetingReport.php";
 
 include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 
-use app\models\Address;
-use app\models\City;
-use app\models\Company;
-use app\services\CompanyService;
+use app\models\MeetingReport;
+use app\services\MeetingService;
+use app\services\AuthService;
 
-/*print_r($_POST);
+// print_r($_POST);
 
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);*/
+$authService = new AuthService();
+$userId = $authService->getLoggedUserId();
 
-$companyService = new CompanyService();
-$city = new City();
-$city->setName($_POST["city"]);
-$address = new Address($city, $_POST["street"], $_POST["building"]);
-$company = new Company($address, $_POST["categories"], $_POST["title"], $_POST["email"], $_POST["phone"]);
-$companyService->addCompany($company);
+$meeting = new MeetingReport();
+$meeting->setUserId($userId);
+$meeting->setCompanyId($_POST["companies"]);
+$meeting->setStatusId($_POST["status"]);
+$meeting->setTypeId($_POST["type"]);
+$meeting->setDescription($_POST["details"]);
+$meeting->setTitle($_POST["title"]);
+
+$meetingService = new MeetingService();
+$meetingService->saveReport($meeting);
 
 include $_SERVER['DOCUMENT_ROOT'] . '/app/views/footer.html';

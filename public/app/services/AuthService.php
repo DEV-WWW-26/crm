@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service;
+namespace app\services;
 
-include_once __DIR__."/DbService.php";
-include_once __DIR__."/Alert.php";
+include_once __DIR__ . "/DbService.php";
+include_once __DIR__ . "/Alert.php";
 
 use App\Model\User;
 use app\services\Alert;
@@ -37,7 +37,8 @@ class AuthService
         }
     }
 
-    public function loginUser(User $user): void {
+    public function loginUser(User $user): void
+    {
         try {
             $stmt = $this->db->getConnection()->prepare("select * from users u WHERE u.email  = ? AND u.password = md5(?)");
             $stmt->bind_param("ss", $user->getEmail(), $user->getPassword());
@@ -46,7 +47,7 @@ class AuthService
                 $num_rows = $stmt->num_rows;
                 // $num_rows = mysqli_stmt_num_rows($stmt);
                 if ($num_rows > 0) {
-                    $this->setLogged();
+                    $this->setLogged($user->getEmail());
                     Alert::ok("Login successful!");
                 } else {
                     Alert::err("Login failed");
@@ -61,15 +62,18 @@ class AuthService
         }
     }
 
-    private function setLogged():void {
+    private function setLogged(string $email): void
+    {
         setcookie('logged', 'ok', time() + (86400 * 1), "/"); // 1 day
+        setcookie('email', $email, time() + (86400 * 1), "/"); // 1 day
     }
 
-    public function isLogged():bool {
+    public function isLogged(): bool
+    {
         if (isset($_COOKIE["logged"])) {
             if ($_COOKIE["logged"] == "ok") {
 
-              return true;
+                return true;
             }
         } else {
 
@@ -79,9 +83,48 @@ class AuthService
         return false;
     }
 
-    public function logoutUser():void {
+    private function getLoggedUserEmail(): ?string
+    {
+        if (isset($_COOKIE["email"])) {
+
+            return $_COOKIE["email"];
+        }
+
+        return null;
+    }
+
+    public function getLoggedUserId(): ?int
+    {
+        try {
+            $email = $this->getLoggedUserEmail();
+            // todo move queries to static strings
+            $res = $this->db->getConnection()->query("select id from users where email = $email");
+            $id = 0;
+            if ($res->num_rows > 0) {
+                while ($row = $res->fetch_assoc()) {
+                    $id = $row['id'];
+                }
+
+                return $id;
+            }
+
+            return null;
+
+        } catch (\Exception $e) {
+            Alert::err($e->getMessage());
+        } finally {
+            $this->db->closeConnection();
+        }
+
+        return null;
+    }
+
+
+    public function logoutUser(): void
+    {
         setcookie('logged', 'no', 1, "/");
         Alert::ok('Logged out successfully');
     }
 }
+
 ?>

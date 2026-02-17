@@ -69,8 +69,7 @@ class MeetingService
         return null;
     }
 
-    public function saveReport(MeetingReport $meeting): int
+    public function saveReport(MeetingReport $meeting): void
     {
-        return 0;
     }
 }
