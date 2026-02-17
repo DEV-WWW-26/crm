@@ -2,13 +2,15 @@
 
 namespace app\models;
 
+use DateTime;
+
 class Address
 {
-    private $id;
-    private $city;
-    private $street;
-    private $building;
-    private $created;
+    private int $id;
+    private City $city;
+    private string $street;
+    private string $building;
+    private DateTime $created;
 
     /**
      * @param $city
@@ -59,7 +61,7 @@ class Address
     /**
      * @param mixed $street
      */
-    public function setStreet($street): void
+    public function setStreet(string $street): void
     {
         $this->street = $street;
     }
@@ -67,7 +69,7 @@ class Address
     /**
      * @return mixed
      */
-    public function getBuilding()
+    public function getBuilding() : string
     {
         return $this->building;
     }
@@ -75,7 +77,7 @@ class Address
     /**
      * @param mixed $building
      */
-    public function setBuilding($building): void
+    public function setBuilding(string $building): void
     {
         $this->building = $building;
     }
@@ -83,7 +85,7 @@ class Address
     /**
      * @return mixed
      */
-    public function getCreated()
+    public function getCreated():DateTime
     {
         return $this->created;
     }

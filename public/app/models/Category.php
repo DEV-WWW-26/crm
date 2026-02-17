@@ -4,13 +4,13 @@ namespace app\models;
 
 class Category
 {
-    private $id;
-    private $category;
+    private int $id;
+    private string $category;
 
     /**
      * @param $category
      */
-    public function __construct($category)
+    public function __construct(string $category)
     {
         $this->category = $category;
     }
@@ -18,7 +18,7 @@ class Category
     /**
      * @return mixed
      */
-    public function getCategory()
+    public function getCategory(): string
     {
         return $this->category;
     }
@@ -34,7 +34,7 @@ class Category
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -46,6 +46,4 @@ class Category
     {
         $this->id = $id;
     }
-
-
 }
