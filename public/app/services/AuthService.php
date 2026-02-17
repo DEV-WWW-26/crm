@@ -32,6 +32,8 @@ class AuthService
             Alert::ok('Registered successfully');
         } catch (\Exception $e) {
             Alert::err($e->getMessage());
+        } finally {
+            $this->db->closeConnection();
         }
     }
 
@@ -54,6 +56,8 @@ class AuthService
             }
         } catch (\Exception $e) { // todo determine where catch Exception (views/locally)
             Alert::err($e->getMessage());
+        } finally {
+            $this->db->closeConnection();
         }
     }
 

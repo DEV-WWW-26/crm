@@ -33,14 +33,12 @@ class DbService
      */
     public function getConnection()
     {
-        if (isset($_SESSION["connection"])) {
-            $this->connection = $_SESSION["connection"];
-        } else {
-            $this->connect();
-            $_SESSION["connection"] = $this->connection;
-        }
-
+        $this->connect();
         return $this->connection;
+    }
+
+    public function closeConnection() {
+        $this->connection->close();
     }
 
 }
