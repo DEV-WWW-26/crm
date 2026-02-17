@@ -15,19 +15,19 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 </form>
 
 <script type="module">
-    import {loadCompanies as load} from '../../js/meeting.js';
+    import {loadCompanies, loadMeetingStatuses} from '../../js/meeting.js';
     import {openAlertErr} from '../../js/alerts.js';
 
-    async function loadCompanies() {
+    async function fillDropDownCompanies() {
         try {
-            let response = await load();
-            let companies = JSON.parse(response);
+            let response = await loadCompanies();
+            let items = JSON.parse(response);
             const element = document.getElementById('company_dropdown');
             let content = '<label for="categories">Выберите компанию:</label><select name="companies" id="companies" required>';
             content += `<option value="">...</option>`;
-            for (const key in companies) {
+            for (const key in items) {
                 // content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
-                content += `<option value="${key}">${companies[key].title}</option>`;
+                content += `<option value="${key}">${items[key].title}</option>`;
             }
             content += '</select>'
 
@@ -38,9 +38,33 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
         }
     }
 
-    window.register = loadCompanies;
+    window.register = fillDropDownCompanies;
 
-    await loadCompanies();
+    await fillDropDownCompanies();
+
+    async function fillDropDownStatuses() {
+        try {
+            let response = await loadMeetingStatuses();
+            let items = JSON.parse(response);
+            const element = document.getElementById('status_dropdown');
+            let content = '<label for="categories">Выберите статус встречи:</label><select name="status" id="status" required>';
+            content += `<option value="">...</option>`;
+            for (const key in items) {
+                // content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
+                content += `<option value="${key}">${items[key].name}</option>`;
+            }
+            content += '</select>'
+
+            element.innerHTML = content;
+
+        } catch (e) {
+            openAlertErr(e);
+        }
+    }
+
+    window.register = fillDropDownStatuses;
+
+    await fillDropDownStatuses();
 
 </script>
 
