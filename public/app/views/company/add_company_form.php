@@ -22,14 +22,17 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
             /*const user = new User(document.getElementById('firstname').value, document.getElementById('lastname').value,
                 document.getElementById('email').value, document.getElementById('firstname').password);*/
             let response = await load();
+            let categories = JSON.parse(response);
 
-            console.log(response); // todo fill dropdown
+            console.log(categories); // todo fill dropdown
 
             const items = document.getElementById('category_elements');
             let content = '';
-            for (const key in response) {
-                content += `<a class="dropdown-item" id="${key}" href="#">${obj[key]}</a>`;
+            for (const key in categories) {
+                content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
             }
+
+            console.log(content);
             items.innerHTML = content;
 
         } catch (e) {
