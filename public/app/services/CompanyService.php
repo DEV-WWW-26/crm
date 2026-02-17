@@ -3,6 +3,7 @@
 namespace app\services;
 
 include_once __DIR__ . "/DbService.php";
+include_once __DIR__ . "/AddressService.php";
 include_once __DIR__ . "/Alert.php";
 
 use app\models\Company;
@@ -11,25 +12,27 @@ use App\Service\DbService;
 class CompanyService
 {
 
-    private $db;
+    private $dbService;
+    private $addressService;
 
     public function __construct()
     {
-        $this->db = new DbService();
+        $this->dbService = new DbService();
+        $this->addressService = new AddressService();
     }
 
     public function addCompany(Company $company) {
         try {
-
-            $stmt = $this->db->getConnection()->prepare("insert into users (first_name, last_name, email, password) 
-                values (?, ?, ?, md5(?))");
-            $stmt->bind_param("ssss", $user->getFirstName(), $user->getLastName(), $user->getEmail(), $user->getPassword());
+            $addressId = $this->addressService->registerAddress($company->getAddress());
+            $stmt = $this->dbService->getConnection()->prepare("insert into companies (address_id, category_id, title, email,
+                       phone) values (?, ?, ?, ?, ?)");
+            $stmt->bind_param("iisss", $addressId, $company->getCategory(), $company->getTitle(), $company->getEmail(),);
             $stmt->execute();
             Alert::ok('Registered successfully');
         } catch (\Exception $e) {
             Alert::err($e->getMessage());
         } finally {
-            $this->db->closeConnection();
+            $this->dbService->closeConnection();
         }
     }
 }

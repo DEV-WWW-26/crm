@@ -2,15 +2,17 @@
 
 namespace app\models;
 
+use DateTime;
+
 class Company
 {
-    private $id;
-    private $address;
-    private $category;
-    private $title;
-    private $email;
-    private $phone;
-    private $created;
+    private int $id;
+    private Address $address;
+    private Category $category;
+    private string $title;
+    private string $email;
+    private string $phone;
+    private DateTime $created;
 
     /**
      * @param $address

@@ -16,7 +16,7 @@ class AddressService
         $this->db = new DbService();
     }
 
-    public function registerAddress(Address $address): void {
+    public function registerAddress(Address $address): int {
         try {
             // todo move queries to static strings
             $stmt = $this->db->getConnection()->prepare("insert into cities (city) values (?)");
@@ -25,11 +25,13 @@ class AddressService
 
             $cityId = $this->db->getConnection()->insert_id;
 
-            $stmt = $this->db->getConnection()->prepare("insert into addres (city_id, street, building) values (?, ?, ?)");
+            $stmt = $this->db->getConnection()->prepare("insert into address (city_id, street, building) values (?, ?, ?)");
             $stmt->bind_param("iss", $cityId, $address->getStreet(), $address->getBuilding());
             $stmt->execute();
 
             Alert::ok('Address registered successfully');
+
+            return $this->db->getConnection()->insert_id;
 
         } catch (\Exception $e) {
             Alert::err($e->getMessage());
