@@ -27,8 +27,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
                     'Категория'
                 + '</button>'
                 + '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="category_elements">';*/
-            let content = '<label for="categories">Выберите категорию:</label><select name="categories" id="categories">';
-            content += `<option value="0">...</option>`;
+            let content = '<label for="categories">Выберите категорию:</label><select name="categories" id="categories" required>';
+            content += `<option value="">...</option>`;
             for (const key in categories) {
                 // content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
                 content += `<option value="${key}">${categories[key].category}</option>`;
