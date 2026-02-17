@@ -10,9 +10,8 @@ class Category
     /**
      * @param $category
      */
-    public function __construct(string $category)
+    public function __construct()
     {
-        $this->category = $category;
     }
 
     /**

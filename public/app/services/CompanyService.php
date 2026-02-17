@@ -33,7 +33,7 @@ class CompanyService
 
             $stmt = $this->dbService->getConnection()->prepare("insert into companies (address_id, category_id, title, email,
                        phone) values (?, ?, ?, ?, ?)");
-            $stmt->bind_param("iisss", $addressId, $company->getCategory(), $company->getTitle(), $company->getEmail(), $company->getPhone());
+            $stmt->bind_param("iisss", $addressId, $company->getCategoryId(), $company->getTitle(), $company->getEmail(), $company->getPhone());
             $stmt->execute();
 
             Alert::ok('The company registered successfully');

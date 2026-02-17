@@ -51,7 +51,7 @@ class CategoryService
         try {
             // todo move queries to static strings
             $res = $this->db->getConnection()->query("select id, category from categories where id = $id");
-            $c = new Category('fake');
+            $c = new Category();
             if ($res->num_rows > 0) {
                 while ($row = $res->fetch_assoc()) {
                     $c->setId($row['id']);

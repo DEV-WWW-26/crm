@@ -8,7 +8,7 @@ class Company
 {
     private int $id;
     private Address $address;
-    private Category $category;
+    private int $categoryId;
     private string $title;
     private string $email;
     private string $phone;
@@ -21,10 +21,10 @@ class Company
      * @param $email
      * @param $phone
      */
-    public function __construct(Address $address, Category $category, string $title, string $email, string $phone)
+    public function __construct(Address $address, $categoryId, string $title, string $email, string $phone)
     {
         $this->address = $address;
-        $this->category = $category;
+        $this->categoryId = $categoryId;
         $this->title = $title;
         $this->email = $email;
         $this->phone = $phone;
@@ -49,9 +49,9 @@ class Company
     /**
      * @return mixed
      */
-    public function getCategory()
+    public function getCategoryId(): int
     {
-        return $this->category;
+        return $this->categoryId;
     }
 
     /**
@@ -95,11 +95,11 @@ class Company
     }
 
     /**
-     * @param mixed $category
+     * @param mixed $categoryId
      */
-    public function setCategory($category): void
+    public function setCategoryId($categoryId): void
     {
-        $this->category = $category;
+        $this->categoryId = $categoryId;
     }
 
     /**
