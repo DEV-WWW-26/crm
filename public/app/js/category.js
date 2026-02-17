@@ -2,6 +2,7 @@
 
 export async function load() {
     try {
+        console.log('Loading categories..');
         const response = await fetch('http://localhost/app/controllers/category.php', {
             method: 'GET',
             headers: {
@@ -10,8 +11,11 @@ export async function load() {
         });
 
         if (!response.ok) {
+
             return Promise.reject('Network response was not ok');
         }
+
+        console.log(response.text());
 
         return Promise.resolve(response.text());
 

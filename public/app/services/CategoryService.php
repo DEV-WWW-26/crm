@@ -31,9 +31,8 @@ class CategoryService
                     $data[] = $row;
                 }
             }
-            $json_output = json_encode($data);
 
-            echo $json_output;
+            return json_encode($data);
 
         } catch (\Exception $e) {
             Alert::err($e->getMessage());
