@@ -2,7 +2,7 @@
 include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 ?>
 
-<form id=regform" action="../../controllers/company.php" method="post">
+<form id=add_company_form" action="../../controllers/company.php" method="post">
 
     <?php
     include 'company.html';
@@ -26,14 +26,14 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 
             console.log(categories); // todo fill dropdown
 
-            const items = document.getElementById('category_elements');
+            const element = document.getElementById('category_elements');
             let content = '';
             for (const key in categories) {
                 content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
             }
 
             console.log(content);
-            items.innerHTML = content;
+            element.innerHTML = content;
 
         } catch (e) {
             openAlertErr(e);
