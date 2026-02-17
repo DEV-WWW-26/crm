@@ -2,7 +2,8 @@
 include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 ?>
 
-<form id=add_company_form" action="../../controllers/company.php" method="post">
+<h2>Встреча</h2>
+<form id=add_company_form" action="../../controllers/meeting.php" method="post">
 
     <?php
     include 'meeting.html';

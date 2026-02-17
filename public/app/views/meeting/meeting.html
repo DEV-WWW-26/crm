@@ -3,37 +3,24 @@
     <input type="text" class="form-control" name="title" required>
 </div>
 <div class="mb-3">
-    <label class="form-label">Город</label>
-    <input type="text" class="form-control" name="city" required>
-</div>
-<div class="mb-3">
-    <label class="form-label">Улица</label>
-    <input type="text" class="form-control" name="street" required>
-</div>
-<div class="mb-3">
-    <label class="form-label">Здание</label>
-    <input type="text" class="form-control" name="building" required>
-</div>
-<div class="mb-3">
-    <label class="form-label">Телефон</label>
-    <input type="text" class="form-control" name="phone" required>
-</div>
-<div class="mb-3">
-    <label class="form-label">Email address</label>
-    <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
+    <label class="form-label">Дата и время встречи</label>
+    <input type="datetime-local" id="datetime" name="datetime">
 </div>
 <p>
-<div class="dropdown" id="categories_dropdown">
-   <!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Категория
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="category_elements">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-    </div>-->
-</div>
+    <div class="dropdown" id="status_dropdown">
+    </div>
 </p>
-<div id="items"></div>
+<p>
+    <div class="dropdown" id="type_dropdown">
+    </div>
+</p>
+<div class="mb-3">
+    <label class="form-label">Сотрудник</label>
+    <input type="text" class="form-control" name="user" required>
+</div>
+<div class="mb-3">
+    <label class="form-label">Детали</label>
+    <input type="text" class="form-control" name="details">
+</div>
 
 <div id="alert"></div>

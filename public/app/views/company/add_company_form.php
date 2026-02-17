@@ -1,7 +1,7 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 ?>
-
+<h2>Компания</h2>
 <form id=add_company_form" action="../../controllers/company.php" method="post">
 
     <?php

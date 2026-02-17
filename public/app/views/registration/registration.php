@@ -1,7 +1,7 @@
 <?php
 include '../header.html';
 
-echo '<h1>Registration</h1>';
+echo '<h2>Регистрация</h2>';
 
 include 'registration_form.html';
 
