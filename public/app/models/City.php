@@ -4,10 +4,10 @@ namespace app\models;
 
 class City
 {
-    private $id;
-    private $name;
+    private int $id;
+    private string $name;
 
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
     }
@@ -15,7 +15,7 @@ class City
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }

@@ -3,20 +3,19 @@
 namespace App\Model;
 
 class User {
-    private $id;
-    private $firstName;
-    private $lastName;
-    private $email;
-    private $password;
+    private int $id;
+    private string $firstName;
+    private string $lastName;
+    private string $email;
+    private string $password;
 
     /**
-     * @param $id
-     * @param $firstName
-     * @param $lastName
-     * @param $email
-     * @param $password
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $email
+     * @param string $password
      */
-    public function __construct($firstName, $lastName, $email, $password)
+    public function __construct(string $firstName, string $lastName, string $email, string $password)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -27,7 +26,7 @@ class User {
     /**
      * @return mixed
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
@@ -35,7 +34,7 @@ class User {
     /**
      * @return mixed
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->lastName;
     }
@@ -43,7 +42,7 @@ class User {
     /**
      * @return mixed
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -51,12 +50,12 @@ class User {
     /**
      * @return mixed
      */
-    public function getPassword()
+    public function getPassword() : string
     {
         return $this->password;
     }
 
-    private function encodePassword($password) {
+    private function encodePassword($password) : string {
         return password_hash($password, PASSWORD_DEFAULT);
     }
 }
