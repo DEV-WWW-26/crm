@@ -4,15 +4,13 @@ namespace app\models;
 
 use DateTime;
 
-class Company
+class Company extends Base
 {
-    private int $id;
     private Address $address;
     private int $categoryId;
     private string $title;
     private string $email;
     private string $phone;
-    private DateTime $created;
 
     /**
      * @param $address
@@ -23,19 +21,13 @@ class Company
      */
     public function __construct(Address $address, $categoryId, string $title, string $email, string $phone)
     {
+        parent::__construct();
+
         $this->address = $address;
         $this->categoryId = $categoryId;
         $this->title = $title;
         $this->email = $email;
         $this->phone = $phone;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -76,14 +68,6 @@ class Company
     public function getPhone()
     {
         return $this->phone;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreated()
-    {
-        return $this->created;
     }
 
     /**

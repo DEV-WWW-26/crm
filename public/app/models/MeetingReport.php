@@ -4,9 +4,8 @@ namespace app\models;
 
 use DateTime;
 
-class MeetingReport
+class MeetingReport extends Base
 {
-    private int $id;
     private int $companyId;
     private int $statusId;
     private int $typeId;
@@ -14,20 +13,6 @@ class MeetingReport
     private string $title;
     private string $description;
     private DateTime $scheduled;
-
-    public function __construct()
-    {
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
 
     public function getCompanyId(): int
     {

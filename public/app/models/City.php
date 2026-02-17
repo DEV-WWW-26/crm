@@ -2,9 +2,8 @@
 
 namespace app\models;
 
-class City
+class City extends Base
 {
-    private int $id;
     private string $name;
 
     /**
@@ -22,16 +21,4 @@ class City
     {
         $this->name = $name;
     }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
-
 }

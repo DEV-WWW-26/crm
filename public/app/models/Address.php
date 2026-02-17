@@ -4,13 +4,11 @@ namespace app\models;
 
 use DateTime;
 
-class Address
+class Address extends Base
 {
-    private int $id;
     private City $city;
     private string $street;
     private string $building;
-    private DateTime $created;
 
     /**
      * @param $city
@@ -19,25 +17,11 @@ class Address
      */
     public function __construct(City $city, string $street, string $building)
     {
+        parent::__construct();
+
         $this->city = $city;
         $this->street = $street;
         $this->building = $building;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
     }
 
     public function getCity(): City
@@ -80,13 +64,5 @@ class Address
     public function setBuilding(string $building): void
     {
         $this->building = $building;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreated():DateTime
-    {
-        return $this->created;
     }
 }
