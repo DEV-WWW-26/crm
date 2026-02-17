@@ -21,37 +21,38 @@ class AddressService
     public function registerAddress(Address $address): int {
         try {
             // todo move queries to static strings
-
+            $conn = $this->db->getConnection();
             $cityId = 0;
 
             try {
-                $stmt = $this->db->getConnection()->prepare("insert into cities (city) values (?)");
+                $stmt = $conn->prepare("insert into cities (city) values (?)");
                 $stmt->bind_param("s", $address->getCity()->getName());
                 $stmt->execute();
 
-                $cityId = $this->db->getConnection()->insert_id;
+                $cityId = $conn->insert_id;
 
             } catch (\Exception $e) {
                 if (str_contains($e->getMessage(), 'Duplicate entry')) {
                     $city = $this->getCityByName($address->getCity()->getName());
                     $cityId = $city->getId();
                 }
-            } finally {
-                $stmt->close();
             }
 
-            $stmt = $this->db->getConnection()->prepare("insert into address (city_id, street, building) values (?, ?, ?)");
+            $stmt = $conn->prepare("insert into address (city_id, street, building) values (?, ?, ?)");
             $stmt->bind_param("iss", $cityId, $address->getStreet(), $address->getBuilding());
             $stmt->execute();
 
+            $addressId = $conn->insert_id;
+            echo $addressId;
+
             Alert::ok('Address registered successfully');
 
-            return $this->db->getConnection()->insert_id;
+            return $addressId;
 
         } catch (\Exception $e) {
             Alert::err($e->getMessage());
         } finally {
-            $stmt->close();
+            $this->db->getConnection()->close();
         }
 
         return 0;

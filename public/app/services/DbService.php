@@ -34,10 +34,12 @@ class DbService
     public function getConnection()
     {
         $this->connect();
+
         return $this->connection;
     }
 
-    public function closeConnection() {
+    public function closeConnection()
+    {
         $this->connection->close();
     }
 
