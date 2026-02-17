@@ -5,7 +5,7 @@ use app\services\MeetingService;
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $meetingService = new MeetingService();
-    echo $meetingService->loadMeetingStatuses();
+    echo $meetingService->loadMeetingTypes();
 } else {
     header('HTTP/1.0 403 Forbidden');
     echo "You are not allowed to access this page directly.";

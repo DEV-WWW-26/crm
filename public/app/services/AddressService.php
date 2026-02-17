@@ -57,7 +57,7 @@ class AddressService
         return 0;
     }
 
-    public function getCityById(int $id) : ?City{
+    public function getCityById(int $id) : ?City {
         try {
             // todo move queries to static strings
             $res = $this->db->getConnection()->query("select id, city from cities where id = $id");
@@ -82,7 +82,7 @@ class AddressService
         return null;
     }
 
-    public function getCityByName(string $name) : ?City{
+    public function getCityByName(string $name) : ?City {
         try {
             // todo move queries to static strings
             $res = $this->db->getConnection()->query("select id, city from cities where city = '$name'");

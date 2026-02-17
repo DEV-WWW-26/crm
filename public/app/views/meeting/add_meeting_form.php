@@ -15,7 +15,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 </form>
 
 <script type="module">
-    import {loadCompanies, loadMeetingStatuses} from '../../js/meeting.js';
+    import {loadCompanies, loadMeetingStatuses, loadMeetingTypes} from '../../js/meeting.js';
     import {openAlertErr} from '../../js/alerts.js';
 
     async function fillDropDownCompanies() {
@@ -65,6 +65,29 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
     window.register = fillDropDownStatuses;
 
     await fillDropDownStatuses();
+
+    async function fillDropDownTypes() {
+        try {
+            let response = await loadMeetingTypes();
+            let items = JSON.parse(response);
+            const element = document.getElementById('type_dropdown');
+            let content = '<label for="categories">Выберите тип встречи:</label><select name="type" id="type" required>';
+            content += `<option value="">...</option>`;
+            for (const key in items) {
+                content += `<option value="${key}">${items[key].name}</option>`;
+            }
+            content += '</select>'
+
+            element.innerHTML = content;
+
+        } catch (e) {
+            openAlertErr(e);
+        }
+    }
+
+    window.register = fillDropDownTypes;
+
+    await fillDropDownTypes();
 
 </script>
 
