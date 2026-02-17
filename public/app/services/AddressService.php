@@ -43,7 +43,6 @@ class AddressService
             $stmt->execute();
 
             $addressId = $conn->insert_id;
-            echo $addressId;
 
             Alert::ok('Address registered successfully');
 

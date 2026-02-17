@@ -11,7 +11,8 @@ use app\models\City;
 use app\models\Company;
 use app\services\CompanyService;
 
-// print_r($_POST);
+print_r($_POST);
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -21,7 +22,6 @@ $city = new City();
 $city->setName($_POST["city"]);
 $address = new Address($city, $_POST["street"], $_POST["building"]);
 $company = new Company($address, $_POST["categories"], $_POST["title"], $_POST["email"], $_POST["phone"]);
-
 $companyService->addCompany($company);
 
 include $_SERVER['DOCUMENT_ROOT'] . '/app/views/footer.html';
