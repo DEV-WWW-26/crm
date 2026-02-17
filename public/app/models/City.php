@@ -5,29 +5,26 @@ namespace app\models;
 class City
 {
     private $id;
-    private $city;
+    private $name;
 
-    /**
-     * @param $city
-     */
-    public function __construct($city)
+    public function __construct($name)
     {
-        $this->city = $city;
+        $this->name = $name;
     }
 
     /**
      * @return mixed
      */
-    public function getCity()
+    public function getName()
     {
-        return $this->city;
+        return $this->name;
     }
 
     /**
-     * @param mixed $city
+     * @param mixed $name
      */
-    public function setCity($city): void
+    public function setName($name): void
     {
-        $this->city = $city;
+        $this->name = $name;
     }
 }
