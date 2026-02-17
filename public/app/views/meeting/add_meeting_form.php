@@ -18,21 +18,16 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
     import {load} from '../../js/category.js';
     import {openAlertErr} from '../../js/alerts.js';
 
-    async function loadCategories() {
+    async function loadCompanies() {
         try {
             let response = await load();
-            let categories = JSON.parse(response);
-            const element = document.getElementById('categories_dropdown');
-            /*let content = '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"' +
-                'data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
-                    'Категория'
-                + '</button>'
-                + '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="category_elements">';*/
-            let content = '<label for="categories">Выберите категорию:</label><select name="categories" id="categories" required>';
+            let companies = JSON.parse(response);
+            const element = document.getElementById('company_dropdown');
+            let content = '<label for="categories">Выберите компанию:</label><select name="companies" id="companies" required>';
             content += `<option value="">...</option>`;
-            for (const key in categories) {
+            for (const key in companies) {
                 // content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
-                content += `<option value="${key}">${categories[key].category}</option>`;
+                content += `<option value="${key}">${companies[key].title}</option>`;
             }
             content += '</select>'
 
@@ -43,13 +38,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
         }
     }
 
-    window.register = loadCategories;
+    window.register = loadCompanies;
 
-    await loadCategories();
+    await loadCompanies();
 
 </script>
 
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/app/views/footer.html';
 ?>
-

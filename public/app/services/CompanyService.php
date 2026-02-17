@@ -45,4 +45,28 @@ class CompanyService
             $this->dbService->closeConnection();
         }
     }
+
+    public function getCompanies() {
+        try {
+            // todo move queries to static strings
+            $res = $this->db->getConnection()->query("select id, title from companies");
+            $data = array();
+            if ($res->num_rows > 0) {
+                while ($row = $res->fetch_assoc()) {
+                    $data[] = $row;
+                }
+
+                return json_encode($data, JSON_UNESCAPED_UNICODE);
+            }
+
+            return null;
+
+        } catch (\Exception $e) {
+            Alert::err($e->getMessage());
+        } finally {
+            $this->db->closeConnection();
+        }
+
+        return null;
+    }
 }
