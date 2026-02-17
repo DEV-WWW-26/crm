@@ -17,7 +17,7 @@ class Address
      * @param $street
      * @param $building
      */
-    public function __construct(City $city, $street, $building)
+    public function __construct(City $city, string $street, string $building)
     {
         $this->city = $city;
         $this->street = $street;

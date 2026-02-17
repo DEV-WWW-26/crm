@@ -21,14 +21,23 @@ class CompanyService
         $this->addressService = new AddressService();
     }
 
-    public function addCompany(Company $company) {
+    public function addCompany(Company $company)
+    {
         try {
             $addressId = $this->addressService->registerAddress($company->getAddress());
+
+            if ($addressId == 0) {
+
+                exit;
+            }
+
             $stmt = $this->dbService->getConnection()->prepare("insert into companies (address_id, category_id, title, email,
                        phone) values (?, ?, ?, ?, ?)");
-            $stmt->bind_param("iisss", $addressId, $company->getCategory(), $company->getTitle(), $company->getEmail(),);
+            $stmt->bind_param("iisss", $addressId, $company->getCategory(), $company->getTitle(), $company->getEmail(), $company->getPhone());
             $stmt->execute();
-            Alert::ok('Registered successfully');
+
+            Alert::ok('The company registered successfully');
+
         } catch (\Exception $e) {
             Alert::err($e->getMessage());
         } finally {

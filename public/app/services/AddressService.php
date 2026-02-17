@@ -38,5 +38,7 @@ class AddressService
         } finally {
             $this->db->closeConnection();
         }
+
+        return 0;
     }
 }

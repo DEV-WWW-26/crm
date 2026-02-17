@@ -21,7 +21,7 @@ class Company
      * @param $email
      * @param $phone
      */
-    public function __construct(Address $address, $category, $title, $email, $phone)
+    public function __construct(Address $address, Category $category, string $title, string $email, string $phone)
     {
         $this->address = $address;
         $this->category = $category;
