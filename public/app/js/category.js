@@ -21,6 +21,6 @@ export async function load() {
 
     } catch (error) {
 
-        return Promise.reject(response.text());
+        return Promise.reject(error);
     }
 }
