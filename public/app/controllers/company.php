@@ -11,11 +11,11 @@ use app\models\City;
 use app\models\Company;
 use app\services\CompanyService;
 
-print_r($_POST);
+/*print_r($_POST);
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL);*/
 
 $companyService = new CompanyService();
 $city = new City();

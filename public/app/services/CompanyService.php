@@ -31,8 +31,6 @@ class CompanyService
                throw new \Exception('Couldn\'t get address ID, address adding error');
             }
 
-            echo $company->getCategoryId();
-
             $stmt = $this->dbService->getConnection()->prepare("insert into companies (address_id, category_id, title, email,
                        phone) values (?, ?, ?, ?, ?)");
             $stmt->bind_param("iisss", $addressId, $company->getCategoryId(), $company->getTitle(), $company->getEmail(),

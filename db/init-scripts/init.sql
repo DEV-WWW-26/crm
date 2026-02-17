@@ -30,7 +30,8 @@ create table if not exists address (
     street VARCHAR(255) NOT NULL COMMENT 'Street',
     building VARCHAR(255) NOT NULL COMMENT 'Building',
     created TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP COMMENT 'When row is added',
-    FOREIGN KEY (city_id) REFERENCES cities(id)
+    FOREIGN KEY (city_id) REFERENCES cities(id),
+    Unique INDEX idx_address(city_id, street, building)
 );
 
 create table if not exists categories (
