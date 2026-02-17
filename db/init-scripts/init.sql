@@ -62,13 +62,13 @@ DELIMITER //
 
 drop procedure if exists fill_meeting_status_table;
 
-CREATE PROCEDURE fill_meeting_status_table ()
+CREATE PROCEDURE fill_meeting_status_table()
 BEGIN
-	SET @rec = 0;
-    SELECT COUNT(*) into @rec FROM INFORMATION_SCHEMA.TABLES
-    WHERE
-        TABLE_SCHEMA = 'db01' AND TABLE_NAME = 'meeting_status';
-    if @rec = 0 then
+	declare k int default 0;
+SELECT COUNT(*) into k FROM INFORMATION_SCHEMA.TABLES t
+WHERE
+    t.TABLE_SCHEMA = 'db01' AND t.TABLE_NAME = 'meeting_status';
+    if k = 1 then
         insert into meeting_status (name) values ('Пройдено');
         insert into meeting_status (name) values ('В процессе');
         insert into meeting_status (name) values ('Отменено');
@@ -90,11 +90,11 @@ drop procedure if exists fill_meeting_types_table;
 
 CREATE PROCEDURE fill_meeting_types_table ()
 BEGIN
-	SET @rec = 0;
-    SELECT COUNT(*) into @rec FROM INFORMATION_SCHEMA.TABLES
+	declare k int default 0;
+    SELECT COUNT(*) into k FROM INFORMATION_SCHEMA.TABLES
     WHERE
         TABLE_SCHEMA = 'db01' AND TABLE_NAME = 'meeting_types';
-    if @rec = 0 then
+    if k = 1 then
         insert into meeting_types (name) values ('Звонок');
         insert into meeting_types (name) values ('Встреча');
     end if;
