@@ -71,7 +71,7 @@ export async function loadMeetingTypes() {
 
 export async function loadMeetingReport() {
     try {
-        const response = await fetch('http://localhost/app/controllers/load_meeting_type.php', {
+        const response = await fetch('http://localhost/app/controllers/load_meeting_report.php', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json', // Sending data as JSON is common

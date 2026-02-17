@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/app/models/City.php";
 
 use app\models\Address;
 use app\models\City;
-use App\Service\DbService;
+use app\services\DbService;
 
 class AddressService
 {

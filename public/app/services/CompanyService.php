@@ -7,7 +7,7 @@ include_once __DIR__ . "/AddressService.php";
 include_once __DIR__ . "/Alert.php";
 
 use app\models\Company;
-use App\Service\DbService;
+use app\services\DbService;
 
 class CompanyService
 {

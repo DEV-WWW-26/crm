@@ -7,7 +7,7 @@ include_once __DIR__ . "/Alert.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/app/models/Category.php";
 
 use app\models\Category;
-use App\Service\DbService;
+use app\services\DbService;
 
 class CategoryService
 {

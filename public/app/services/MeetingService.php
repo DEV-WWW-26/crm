@@ -7,7 +7,7 @@ include_once __DIR__ . "/Alert.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/app/models/MeetingReport.php";
 
 use app\models\MeetingReport;
-use App\Service\DbService;
+use app\services\DbService;
 
 class MeetingService
 {

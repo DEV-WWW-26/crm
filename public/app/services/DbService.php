@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace app\services;
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/app/config/db/DbConfig.php";
 

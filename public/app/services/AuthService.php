@@ -6,7 +6,7 @@ include_once __DIR__ . "/DbService.php";
 include_once __DIR__ . "/Alert.php";
 
 use App\Model\User;
-use App\Service\DbService;
+use app\services\DbService;
 
 class AuthService
 {
