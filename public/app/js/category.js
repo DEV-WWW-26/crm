@@ -20,6 +20,7 @@ export async function load() {
         return Promise.resolve(response.text());
 
     } catch (error) {
+        console.log(error);
 
         return Promise.reject(error);
     }

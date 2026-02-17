@@ -23,7 +23,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
                 document.getElementById('email').value, document.getElementById('firstname').password);*/
             let response = await load();
 
-            console.log(response);
+            console.log(response); // todo fill dropdown
 
         } catch (e) {
             openAlertErr(e);
