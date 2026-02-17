@@ -15,7 +15,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 </form>
 
 <script type="module">
-    import {load} from '../../js/category.js';
+    import {loadCompanies as load} from '../../js/meeting.js';
     import {openAlertErr} from '../../js/alerts.js';
 
     async function loadCompanies() {
