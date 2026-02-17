@@ -57,7 +57,7 @@ export async function loadMeetingTypes() {
 
         if (!response.ok) {
 
-            return Promise.reject('Network response was not ok');
+            return Promise.reject('Network response was not ok. ');
         }
 
         return Promise.resolve(response.text());

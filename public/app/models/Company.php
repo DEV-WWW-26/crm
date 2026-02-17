@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use DateTime;
-
 class Company extends Base
 {
     private Address $address;

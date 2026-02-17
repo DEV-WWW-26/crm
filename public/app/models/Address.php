@@ -1,8 +1,5 @@
 <?php
-
 namespace app\models;
-
-use DateTime;
 
 class Address extends Base
 {

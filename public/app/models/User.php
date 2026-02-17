@@ -2,8 +2,9 @@
 
 namespace App\Model;
 
-class User {
-    private int $id;
+use app\models\Base;
+
+class User extends Base {
     private string $firstName;
     private string $lastName;
     private string $email;
@@ -17,6 +18,8 @@ class User {
      */
     public function __construct(string $firstName, string $lastName, string $email, string $password)
     {
+        parent::__construct();
+
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
@@ -53,9 +56,5 @@ class User {
     public function getPassword() : string
     {
         return $this->password;
-    }
-
-    private function encodePassword($password) : string {
-        return password_hash($password, PASSWORD_DEFAULT);
     }
 }
