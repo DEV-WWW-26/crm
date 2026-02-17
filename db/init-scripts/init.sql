@@ -3,7 +3,7 @@ create database if not exists db01;
 
 drop user if exists db01_user;
 CREATE USER 'db01_user'@'%' IDENTIFIED BY 'irP267H1'; -- todo this is should be replaced by env var, need more time
-GRANT SELECT, INSERT, UPDATE, DELETE ON db01.* TO 'db01_user'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW  ON db01.* TO 'db01_user'@'%';
 
 use db01;
 
@@ -139,3 +139,13 @@ create table if not exists meeting_reports (
     FOREIGN KEY (type_id) REFERENCES meeting_types(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+drop view if exists meeting_reports_view;
+
+CREATE view meeting_reports_view as
+select c.title company, mr.title, mr.scheduled, ms.name status, mt.name `type`,
+       concat(u.last_name, ' ', u.first_name) user, mr.description  from meeting_reports mr
+left join companies c on c.id = mr.company_id
+left join meeting_status ms on ms.id = mr.status_id
+left join meeting_types mt on mt.id = mr.type_id
+left join users u on u.id = mr.user_id;

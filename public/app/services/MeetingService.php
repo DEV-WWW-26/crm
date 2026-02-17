@@ -86,4 +86,8 @@ class MeetingService
             $this->dbService->closeConnection();
         }
     }
+
+    public function getAllReports(): ?array {
+
+    }
 }
