@@ -1,6 +1,8 @@
 <?php
 namespace app\models;
 
+include_once __DIR__ . "/Base.php";
+
 class City extends Base
 {
     private string $name;

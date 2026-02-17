@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+include_once __DIR__ . "/Base.php";
+
 use app\models\Base;
 
 class User extends Base {

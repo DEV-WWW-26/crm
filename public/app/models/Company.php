@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+include_once __DIR__ . "/Base.php";
+
 class Company extends Base
 {
     private Address $address;
