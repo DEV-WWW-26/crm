@@ -28,7 +28,7 @@ class CompanyService
 
             if ($addressId == 0) {
 
-               throw new \Exception('Couldn\'t get address ID, address adding error');
+                throw new \Exception('Couldn\'t get address ID, address adding error');
             }
 
             $stmt = $this->dbService->getConnection()->prepare("insert into companies (address_id, category_id, title, email,
@@ -46,7 +46,8 @@ class CompanyService
         }
     }
 
-    public function getCompanies(): ?string {
+    public function getCompanies(): ?string
+    {
         try {
             // todo move queries to static strings
             $res = $this->dbService->getConnection()->query("select id, title from companies");
@@ -57,6 +58,34 @@ class CompanyService
                 }
 
                 return json_encode($data, JSON_UNESCAPED_UNICODE);
+            }
+
+            return null;
+
+        } catch (\Exception $e) {
+            Alert::err($e->getMessage());
+        } finally {
+            $this->dbService->closeConnection();
+        }
+
+        return null;
+    }
+
+    public function getCompanyById(int $id): ?string
+    {
+        try {
+            $stmt = $this->dbService->getConnection()->prepare("select * from companies where id = ?");
+            if ($stmt) {
+                $stmt->bind_param("i", $id);
+                if ($stmt->execute()) {
+                    $result = $stmt->get_result();
+                    $data = array();
+                    while ($row = $result->fetch_assoc()) {
+                        $data[] = $row;
+                    }
+
+                    return json_encode($data, JSON_UNESCAPED_UNICODE);
+                }
             }
 
             return null;

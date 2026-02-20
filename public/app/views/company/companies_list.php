@@ -16,7 +16,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/footer.html';
 <script type="module">
     import {loadCompanies} from '../../js/company.js';
     import {openAlertErr} from '../../js/alerts.js';
-    import {goHomeIfUnauthorized} from '../../js/navigate.js';
+    import {goHomeIfUnauthorized, getUrlParam} from '../../js/navigate.js';
 
     goHomeIfUnauthorized();
 
@@ -31,7 +31,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/footer.html';
 
             let items = JSON.parse(response);
 
-            if (items.length == 0) {
+            if (items.length === 0) {
 
                 return;
             }

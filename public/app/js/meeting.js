@@ -2,7 +2,7 @@
 
 export async function loadCompanies() {
     try {
-        const response = await fetch('http://localhost/app/controllers/load_company.php', {
+        const response = await fetch('http://localhost/app/controllers/load_companies.php', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json', // Sending data as JSON is common

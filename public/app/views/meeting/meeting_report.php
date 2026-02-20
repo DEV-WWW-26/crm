@@ -31,7 +31,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/footer.html';
 
             let items = JSON.parse(response);
 
-            if (items.length == 0) {
+            if (items.length === 0) {
 
                 return;
             }
