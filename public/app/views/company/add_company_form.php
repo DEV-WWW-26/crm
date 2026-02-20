@@ -1,5 +1,6 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
+include($_SERVER['DOCUMENT_ROOT'] . '/app/views/navigation.html');
 ?>
 <h2>Компания</h2>
 <form id=add_company_form" action="../../controllers/company.php" method="post">
@@ -16,11 +17,14 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
 <script type="module">
     import {load} from '../../js/category.js';
     import {openAlertErr} from '../../js/alerts.js';
+    import {goHomeIfUnauthorized} from "../../js/navigate.js";
+
+    goHomeIfUnauthorized();
 
     async function loadCategories() {
         try {
             let response = await load();
-            let categories = JSON.parse(response);
+            let items = JSON.parse(response);
             const element = document.getElementById('categories_dropdown');
             /*let content = '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"' +
                 'data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
@@ -28,12 +32,14 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
                 + '</button>'
                 + '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="category_elements">';*/
             let content = '<label for="categories">Выберите категорию:</label><select name="categories" id="categories" required>';
-            content += `<option value="">...</option>`;
-            for (const key in categories) {
+            content += `<option value="" selected disabled>...</option>`;
+            for (const key in items) {
                 // content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
-                content += `<option value="${key}">${categories[key].category}</option>`;
+                content += `<option value="${items[key].id}">${items[key].category}</option>`;
             }
             content += '</select>'
+
+            console.log(content);
 
             element.innerHTML = content;
 

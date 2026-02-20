@@ -1,5 +1,6 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
+include($_SERVER['DOCUMENT_ROOT'] . '/app/views/navigation.html');
 ?>
 
 <h2>Отчет по встречам</h2>
@@ -15,9 +16,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/footer.html';
 <script type="module">
     import {loadMeetingReport} from '../../js/meeting.js';
     import {openAlertErr} from '../../js/alerts.js';
-    import {gotoHomeIfUnauthorized} from '../../js/navigate.js';
+    import {goHomeIfUnauthorized} from '../../js/navigate.js';
 
-    gotoHomeIfUnauthorized();
+    goHomeIfUnauthorized();
 
     async function fillReportTable() {
         try {

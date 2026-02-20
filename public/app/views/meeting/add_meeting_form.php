@@ -1,5 +1,6 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
+include $_SERVER['DOCUMENT_ROOT'] . '/app/views/navigation.html';
 ?>
 
 <h2>Встреча</h2>
@@ -24,7 +25,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
             let items = JSON.parse(response);
             const element = document.getElementById('company_dropdown');
             let content = '<label for="categories">Выберите компанию:</label><select name="companies" id="companies" required>';
-            content += `<option value="">...</option>`;
+            content += `<option value="" selected disabled>...</option>`;
 
             for (const key in items) {
                 // content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
@@ -49,7 +50,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
             let items = JSON.parse(response);
             const element = document.getElementById('status_dropdown');
             let content = '<label for="categories">Выберите статус встречи:</label><select name="status" id="status" required>';
-            content += `<option value="">...</option>`;
+            content += `<option value="" selected disabled>...</option>`;
             for (const key in items) {
                 // content += `<a class="dropdown-item" id="${key}" href="#">${categories[key].category}</a>`;
                 content += `<option value="${items[key].id}">${items[key].name}</option>`;
@@ -73,7 +74,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/header.html';
             let items = JSON.parse(response);
             const element = document.getElementById('type_dropdown');
             let content = '<label for="categories">Выберите тип встречи:</label><select name="type" id="type" required>';
-            content += `<option value="">...</option>`;
+            content += `<option value="" selected disabled>...</option>`;
             for (const key in items) {
                 content += `<option value="${items[key].id}">${items[key].name}</option>`;
             }

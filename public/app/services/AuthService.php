@@ -3,15 +3,17 @@
 namespace app\services;
 
 include_once __DIR__ . "/DbService.php";
+include_once __DIR__ . "/NavigatorService.php";
 include_once __DIR__ . "/Alert.php";
 
 use App\Model\User;
-use app\services\DbService;
+use app\services\NavigatorService;
 
 class AuthService
 {
 
     private $db;
+    private $navigatorService;
 
     /**
      * @param $db
@@ -19,6 +21,7 @@ class AuthService
     public function __construct()
     {
         $this->db = new DbService();
+        $this->navigatorService = new NavigatorService();
     }
 
     public function registerUser(User $user): void
@@ -124,7 +127,9 @@ class AuthService
     {
         setcookie('logged', 'no', 1, "/");
         Alert::ok('Logged out successfully');
+        $this->navigatorService->goHome();
     }
 }
 
 ?>
+

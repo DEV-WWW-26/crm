@@ -4,8 +4,12 @@ export function navigate(url) {
     window.location.href = url;
 }
 
-export function gotoHomeIfUnauthorized() {
+export function goHomeIfUnauthorized() {
     if (!isCookieExists('logged')) {
-        navigate('http://localhost/index.php')
+        navigate('http://localhost/index.php');
     }
+}
+
+export function goHome() {
+    navigate('http://localhost/index.php');
 }
