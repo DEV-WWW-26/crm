@@ -74,7 +74,13 @@ class CompanyService
     public function getCompanyById(int $id): ?string
     {
         try {
-            $stmt = $this->dbService->getConnection()->prepare("select * from companies where id = ?");
+            $stmt = $this->dbService->getConnection()->prepare('
+            select c.title, c.email, c.phone, c3.city, a.street, a.building, c2.category from companies c
+                left join categories c2 on c2.id = c.category_id 
+                left join address a on a.id = c.address_id 
+                left join cities c3 on c3.id = a.city_id 
+            where 
+                c.id = ?');
             if ($stmt) {
                 $stmt->bind_param("i", $id);
                 if ($stmt->execute()) {
