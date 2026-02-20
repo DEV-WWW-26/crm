@@ -5,8 +5,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/app/services/SystemService.php";
 use app\services\CompanyService;
 use app\services\SystemService;
 
-$systemService = new SystemService();
-$systemService->displayAllErrors();
+// $systemService = new SystemService();
+// $systemService->displayAllErrors();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $companyService = new CompanyService();

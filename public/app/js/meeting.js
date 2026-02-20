@@ -91,3 +91,27 @@ export async function loadMeetingReport() {
         return Promise.reject(error);
     }
 }
+
+
+export async function loadCompanyMeetings(id) {
+    try {
+        const response = await fetch('http://localhost/app/controllers/load_company_meetings.php?id=' + id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json', // Sending data as JSON is common
+            }
+        });
+
+        if (!response.ok) {
+
+            return Promise.reject('Network response was not ok. ');
+        }
+
+        return Promise.resolve(response.text());
+
+    } catch (error) {
+        console.log(error);
+
+        return Promise.reject(error);
+    }
+}

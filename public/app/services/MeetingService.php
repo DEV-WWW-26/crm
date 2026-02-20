@@ -110,4 +110,39 @@ class MeetingService
 
         return null;
     }
+
+    public function getAllMeetingsByCompanyId(int $id): ?string {
+        try {
+            $stmt = $this->dbService->getConnection()->prepare('
+            select mr.title, mr.scheduled, ms.name status, mt.name `type`, concat(u.last_name, \' \', u.first_name) user,
+                mr.description  from meeting_reports mr 
+                left join companies c on c.id = mr.company_id 
+                left join meeting_status ms on ms.id = mr.status_id 
+                left join meeting_types mt on mt.id = mr.type_id 
+                left join users u on u.id = mr.user_id
+            where
+                c.id = ?');
+            if ($stmt) {
+                $stmt->bind_param("i", $id);
+                if ($stmt->execute()) {
+                    $result = $stmt->get_result();
+                    $data = array();
+                    while ($row = $result->fetch_assoc()) {
+                        $data[] = $row;
+                    }
+
+                    return json_encode($data, JSON_UNESCAPED_UNICODE);
+                }
+            }
+
+            return null;
+
+        } catch (\Exception $e) {
+            Alert::err($e->getMessage());
+        } finally {
+            $this->dbService->closeConnection();
+        }
+
+        return null;
+    }
 }

@@ -23,6 +23,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/meeting/meeting_report.html';
     import {getCompanyById} from '../../js/company.js';
     import {openAlertErr} from '../../js/alerts.js';
     import {goHomeIfUnauthorized, getUrlParam} from '../../js/navigate.js';
+    import {loadCompanyMeetings} from "../../js/meeting.js";
 
     goHomeIfUnauthorized();
 
@@ -65,9 +66,50 @@ include $_SERVER['DOCUMENT_ROOT'] . '/app/views/meeting/meeting_report.html';
         }
     }
 
-    window.register = fillCompanyForm;
+    const companyId = getUrlParam("id");
 
-    await fillCompanyForm(getUrlParam("id"));
+    window.register = fillCompanyForm;
+    await fillCompanyForm(companyId);
+
+    async function fillReportTable(id) {
+        try {
+            let response = await loadCompanyMeetings(id);
+
+            if (response == null || response == undefined || response == '') {
+
+                return;
+            }
+
+            let items = JSON.parse(response);
+
+            if (items.length === 0) {
+
+                return;
+            }
+
+            const element = document.getElementById('tbody');
+            let content = '';
+
+            for (const key in items) {
+                content += '<tr>' +
+                    `<td>${items[key].title}</td>` +
+                    `<td>${items[key].scheduled}</td>` +
+                    `<td>${items[key].status}</td>` +
+                    `<td>${items[key].type}</td>` +
+                    `<td>${items[key].user}</td>` +
+                    `<td>${items[key].description}</td>` +
+                    '</tr>';
+            }
+
+            element.innerHTML = content;
+
+        } catch (e) {
+            openAlertErr(e);
+        }
+    }
+
+    window.register = fillReportTable;
+    await fillReportTable(companyId);
 
 </script>
 
